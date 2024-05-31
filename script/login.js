@@ -79,4 +79,32 @@ function initBlobs() {
 
 initBlobs()
 
+$(document).ready(function(){
+  $('#username').on('input', function(){
+      var username = $(this).val();
+      if(username.length > 0) {
+          $.ajax({
+              url: 'check_username.php',
+              method: 'POST',
+              data: {username: username},
+              dataType: 'json',
+              success: function(response) {
+                  if(response.exists) {
+                      $('#username').removeClass('is-valid').addClass('is-invalid');
+                      $('#usernameFeedback').text('Username is already taken.');
+                      $('#nextButton').prop('disabled', true); // Disable the Next button
+                  } else {
+                      $('#username').removeClass('is-invalid').addClass('is-valid');
+                      $('#usernameFeedback').text('');
+                      $('#nextButton').prop('disabled', false); // Enable the Next button
+                  }
+              }
+          });
+      } else {
+          $('#username').removeClass('is-valid is-invalid');
+          $('#usernameFeedback').text('');
+          $('#nextButton').prop('disabled', false); // Enable the Next button if username is empty
+      }
+  });
+});
 

@@ -166,21 +166,16 @@ if (file_exists($target_file)) {
 				<a href="#" class="social"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 			</div>
 			<span>or use your email for registration</span>
-    <div class="form-group">
-      <input type="text" class="form-control" name="username" id="username" placeholder="Enter username" required>
-      <div class="valid-feedback">Looks good!</div>
+    <div>
+    <input type="text" class="form-control" name="username" id="username" placeholder="Enter username" required>
+            <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please enter a valid username.</div>
             <div id="usernameFeedback" class="invalid-feedback"></div>
-            </div>
-      <div class="form-group">
-      <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" required>
-       <div class="valid-feedback">Looks good!</div>
-            <div class="invalid-feedback">Please enter a valid email.</div>
-            <div id="emailFeedback" class="invalid-feedback"></div>
-            </div>
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
-		</form>
+
+    </div>
+      
+</form>
+		
 	</div>
 	<div class="form-container sign-in-container">
 		<form method="POST">

@@ -6,7 +6,7 @@
 }
 
 body {
-	background: #f6f5f7;
+	background: #fdfdfd;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -14,6 +14,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
+	
 }
 
 h1 {
@@ -374,4 +375,24 @@ footer a {
       padding: 0 20px;
     }
   }
-  
+
+  .popup {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border: 1px solid #000;
+  }
+
+  .valid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #28a745;
+}
+
+
