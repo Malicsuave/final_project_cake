@@ -28,103 +28,6 @@ $error = "Incorrect username or password ";
   }
 }
 
-if (isset($_POST['multisave'])) {
-    
-  // Getting the account information
-  $username = $_POST['username'];
-  $email = $_POST['email'];
-
-  $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-  
-  // Getting the personal information
-  $firstname = $_POST['firstname'];
-  $lastname = $_POST['lastname'];
-  $birthday = $_POST['birthday'];
-  $sex = $_POST['sex'];
-
-  // Getting the address information
-  $street = $_POST['user_street'];
-  $barangay = $_POST['barangay_text'];
-  $city = $_POST['city_text'];
-  $province = $_POST['region_text'];
-
- // Handle file upload
- $target_dir = "uploads/";
- $original_file_name = basename($_FILES["profile_picture"]["name"]);
- 
- // NEW CODE: Initialize $new_file_name with $original_file_name
-  $new_file_name = $original_file_name; 
- 
- 
-  $target_file = $target_dir . $original_file_name;
-  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-  $uploadOk = 1;
- 
- // Check if file already exists and rename if necessary
-// Check if file already exists and rename if necessary
-if (file_exists($target_file)) {
- // Generate a unique file name by appending a timestamp
- $new_file_name = pathinfo($original_file_name, PATHINFO_FILENAME) . '_' . time() . '.' . $imageFileType;
- $target_file = $target_dir . $new_file_name;
-} else {
- // Update $target_file with the original file name
- $target_file = $target_dir . $original_file_name;
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-  // Check if file is an actual image or fake image
-  $check = getimagesize($_FILES["profile_picture"]["tmp_name"]);
-  if ($check === false) {
-      echo "File is not an image.";
-      $uploadOk = 0;
-  }
-
-  // Check file size
-  if ($_FILES["profile_picture"]["size"] > 500000) {
-      echo "Sorry, your file is too large.";
-      $uploadOk = 0;
-  }
-
-  // Allow certain file formats
-  if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-      $uploadOk = 0;
-  }
-
-  // Check if $uploadOk is set to 0 by an error
-  if ($uploadOk == 0) {
-      echo "Sorry, your file was not uploaded.";
-  } else {
-      if (move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $target_file)) {
-          echo "The file " . htmlspecialchars($new_file_name) . " has been uploaded.";
-
-          // Save the user data and the path to the profile picture in the database
-          $profile_picture_path = 'uploads/'.$new_file_name; // Save the new file name (without directory)
-          
-          $userID = $con->signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $password, $profile_picture_path);
-
-          if ($userID) {
-              // Signup successful, insert address into users_address table
-              if ($con->insertAddress($userID, $street, $barangay, $city, $province)) {
-                  // Address insertion successful, redirect to login page
-                  header('location:index.php');
-                  exit; // Stop further execution
-              } else {
-                  // Address insertion failed, display error message
-                  $error = "Error occurred while signing up. Please try again.";
-              }
-          } else {
-              // Signup failed, display error message
-              echo "Sorry, there was an error signing up.";
-          }
-      } else {
-          // File upload failed, display error message
-          echo "Sorry, there was an error uploading your file.";
-      }
-  }
-}
-
-
-
-
 
 ?>
  
@@ -133,10 +36,16 @@ if (file_exists($target_file)) {
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=\, initial-scale=1.0">
+ 
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
   <!-- Link for styles -->
-  <link rel="stylesheet" href="styling/style.css">
+  <link rel="stylesheet" href="./styling/style.css">
+  
   <!-- Link for fontawesome -->
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+  
 
   <title>Cake</title>
  </head>
@@ -167,11 +76,28 @@ if (file_exists($target_file)) {
 			</div>
 			<span>or use your email for registration</span>
     <div>
+    <div class="form-group">
     <input type="text" class="form-control" name="username" id="username" placeholder="Enter username" required>
             <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please enter a valid username.</div>
             <div id="usernameFeedback" class="invalid-feedback"></div>
 
+    </div>
+    <div class="form-group">
+    <input type="text" class="form-control" name="email" id="email" placeholder="Enter email" required>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please enter a valid email.</div>
+            <div id="emailFeedback" class="invalid-feedback"></div>
+
+    </div>
+    <div class="form-group">
+
+    <input type="text" class="form-control" name="password" id="password" placeholder="Enter password" required>
+            <div class="valid-feedback">Looks good!</div>
+           
+
+    </div>
+  
     </div>
       
 </form>
@@ -226,6 +152,7 @@ if (file_exists($target_file)) {
 
 <!-- This is area is for script -->
 <script src="script/login.js"></script>
+<script src="./bootstrap-5.3.3-dist/js/bootstrap.js"></script>
 
  </body>
  </html>

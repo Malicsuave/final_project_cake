@@ -97,9 +97,9 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
+	width: 1000px;
 	max-width: 100%;
-	min-height: 480px;
+	min-height: 500px;
 }
 
 .form-container {
@@ -122,8 +122,7 @@ input {
 .sign-up-container {
 	left: 0;
 	width: 50%;
-	opacity: 0;
-	z-index: 1;
+	z-index: 2;
 }
 
 .container.right-panel-active .sign-up-container {
@@ -237,6 +236,7 @@ footer {
     right: 0;
     text-align: center;
     z-index: 999;
+    height: 30px;
 }
 
 footer p {
@@ -252,6 +252,8 @@ footer a {
     text-decoration: none;
 }
 
+
+/* style for */
   
   .bg1 {
     margin: 0;
@@ -395,4 +397,111 @@ footer a {
     color: #28a745;
 }
 
-
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  .card {
+    width: 300px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px auto;
+    border: 3px solid #007bff;
+  }
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #343a40;
+  }
+  .card-text {
+    color: #6c757d;
+  }
+  .btn {
+    margin: 5px;
+  }
+  
+  .login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    height: auto;
+    padding: 20px;  
+  }
+  
+  .error-input {
+    border: 1px solid red !important;
+  }
+  
+  .form-label {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+  }
+  
+  .form-control {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+  }
+  
+  .login-heading {
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333; /* Adjust the color as per your design */
+  }
+  
+  .form-section {
+    display: none;
+  }
+  .current-section {
+    display: block;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    height: auto;
+    padding: 20px;  
+    
+  }
+  .custom-container{
+  margin-top: 100px;
+  width: 500px;
+  
+  }
+  
+  /* /user information stylesheet */
+  
+  .user-info {
+  margin: 0 auto;
+  margin-top: 100px;
+  height: auto;
+  padding: 20px; 
+  
+  }
+  .list-group-item-icon {
+  margin-right: 10px;
+  }
+  .list-group-item-success {
+  background-color: #d4edda !important;
+  }
+  .list-group-item-danger {
+  background-color: #f8d7da !important;
+  }
+  
+  .custom-container{
+  width: 800px;
+  }
