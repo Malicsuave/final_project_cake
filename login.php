@@ -1,12 +1,10 @@
 <?php
- session_start();
- if (empty($_SESSION['username'])) {
-  header('location:login.php');
- }
+
+ 
  require_once('classes/database.php');
  $con=new database();
- $error = "";
 
+ session_start();
 
 if (isset($_POST['login'])) {
   $username = $_POST['username'];
@@ -97,6 +95,7 @@ $error = "Incorrect username or password ";
            
 
     </div>
+    <button type="submit" name="login">Sign Up</button>
   
     </div>
       
@@ -104,7 +103,7 @@ $error = "Incorrect username or password ";
 		
 	</div>
 	<div class="form-container sign-in-container">
-		<form method="POST">
+		<form method="POST" novalidate>
 			<h1>Sign in</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -112,7 +111,7 @@ $error = "Incorrect username or password ";
 				<a href="#" class="social"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 			</div>
 			<span>or use your account</span>
-			<input type="text" class="form-control" name="username" placeholder="Enter username">
+			<input type="text" class="form-control" required name="username" placeholder="Enter username">
       <input type="password" class="form-control" name="password" placeholder="Enter password">
       <?php if (!empty($error_message)) : ?>
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
